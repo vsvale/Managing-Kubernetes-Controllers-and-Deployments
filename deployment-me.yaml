@@ -3,14 +3,17 @@ kind: Deployment
 metadata:
   name: hello-world
 spec:
-  replicas: 10
+  replicas: 5
   selector:
-    matchLabels:
-      app: hello-world
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - hello-world-pod-me
   template:
     metadata:
       labels:
-        app: hello-world
+        app: hello-world-pod-me
     spec:
       containers:
       - name: hello-world
@@ -21,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: hello-world-pod
 spec:
   selector:
-    app: hello-world
+    app: hello-world-pod-me
   ports:
   - port: 80
     protocol: TCP

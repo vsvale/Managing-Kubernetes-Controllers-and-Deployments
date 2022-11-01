@@ -47,3 +47,17 @@ Replicas define the current state of the deployment, we'll dive into what each o
 Remove our resources
 `kubectl delete deployment hello-world`
 `kubectl delete service hello-world`
+
+Deploy a Deployment which creates a ReplicaSet
+`kubectl apply -f https://raw.githubusercontent.com/vsvale/Managing-Kubernetes-Controllers-and-Deployments/main/deployment.yaml`
+`kubectl get replicaset`
+
+Let's look at the selector for this one...and the labels in the pod template
+`kubectl describe replicaset hello-world`
+
+Let's delete this deployment which will delete the replicaset
+`kubectl delete deployment hello-world`
+`kubectl get replicaset`
+
+Deploy a ReplicaSet with matchExpressions
+kubectl apply -f deployment-me.yaml
